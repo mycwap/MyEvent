@@ -10,12 +10,23 @@ import org.json.JSONException;
 
 
 
+
+
+
+
+
+
+
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -26,6 +37,7 @@ public class OnAlarmReceive extends BroadcastReceiver {
 	NotificationManager mNotificationManager;
 	Context context;
 
+	    private static String IMG_URL = "http://openweathermap.org/img/w/";
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		this.context = context;
@@ -68,9 +80,10 @@ public class OnAlarmReceive extends BroadcastReceiver {
 
 			try {
 				weather = JSONWeatherParser.getWeather(data);
-				
+		
+		       
 				// Let's retrieve the icon
-				weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+				//weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
 				
 			} catch (JSONException e) {				
 				e.printStackTrace();
@@ -97,14 +110,17 @@ public class OnAlarmReceive extends BroadcastReceiver {
 	
   }
 	private void showNotification(Weather weather) {
-
+		
+		String t=weather.currentCondition.getIcon();
+		String name=GetImageName.getName(t);
+		int resID = context.getResources().getIdentifier( name, "drawable", context.getPackageName());
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
 				context)
-				.setSmallIcon(R.drawable.mario)
+				.setSmallIcon(resID)
 				.setContentTitle(weather.currentCondition.getDescr())
 				.setContentText(
 						Math.round((weather.temperature.getTemp() - 273.15))
-								+ "C");
+								+ "¡æ");
 		// Creates an explicit intent for an Activity in your app
 		Intent resultIntent = new Intent(context, MainActivity.class);
 
