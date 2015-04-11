@@ -49,12 +49,13 @@ public class EventFragment extends Fragment {
 
 
 	public void shareUsingNativeDialog() {
-		SharedPreferences prefs = getActivity().getSharedPreferences("EVENT", Context.MODE_PRIVATE); 
-		String WhenAndWhere="We will have party at"+prefs.getString("WHEN", "today")+" in "+prefs.getString("WHERE", "today");
+		SharedPreferences prefs = getActivity().getSharedPreferences("MYEVENT", Context.MODE_PRIVATE); 
+		String WhenAndWhere="We will have party at "+" "+prefs.getString("WHEN", "today")+" in "+prefs.getString("WHERE", "UCC");
 		String What=prefs.getString("WHERE", "today");
+		
 		FacebookDialog.ShareDialogBuilder builder = new FacebookDialog.ShareDialogBuilder(
 				getActivity()).setLink(SHARE_MY_LINK)
-				.setName(SHARE_EVENT_NAME)
+				.setName(What).setDescription(WhenAndWhere)
 
 				.setFragment(this);
 		//builder.build().present();
@@ -66,9 +67,12 @@ public class EventFragment extends Fragment {
 	}
 
 	public void shareUsingMessengerDialog() {
+		SharedPreferences prefs = getActivity().getSharedPreferences("MYEVENT", Context.MODE_PRIVATE); 
+		String WhenAndWhere="We will have party at "+" "+prefs.getString("WHEN", "today")+" in "+prefs.getString("WHERE", "UCC");
+		String What=prefs.getString("WHERE", "today");
 		FacebookDialog.MessageDialogBuilder builder = new FacebookDialog.MessageDialogBuilder(
-				getActivity()).setLink(SHARE_MY_LINK)
-				.setName(SHARE_EVENT_NAME).setFragment(this);
+				getActivity()).setLink(SHARE_MY_LINK).setDescription(WhenAndWhere)
+				.setName(What).setFragment(this);
 		// share the app
 		builder.build().present();
 //		if (builder.canPresent()) {

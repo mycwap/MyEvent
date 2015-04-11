@@ -26,6 +26,7 @@ public class LocationService extends Service implements LocationListener {
 
     public Location getLocation() {
         return location;
+        
     }
 
     public Location bestLastKnownLocation() {
