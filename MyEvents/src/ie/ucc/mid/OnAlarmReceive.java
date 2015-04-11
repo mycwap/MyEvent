@@ -17,6 +17,7 @@ import org.json.JSONException;
 
 
 
+
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
@@ -43,9 +44,11 @@ public class OnAlarmReceive extends BroadcastReceiver {
 		this.context = context;
 //    	Weather wt=getWeather();
 //   	 showNotification(wt);
-	String city = "Cork,IE";
+		LocationService locationService = new LocationService(context);
+		double lat = locationService.getLocation().getLatitude();
+		double lon = locationService.getLocation().getLongitude();
+		String city = "lat="+lat+"&lon="+lon;
 
-		
 		JSONWeatherTask task = new JSONWeatherTask();
 		task.execute(new String[]{city});
 		// Log.d(Globals.TAG, "BroadcastReceiver, in onReceive:");

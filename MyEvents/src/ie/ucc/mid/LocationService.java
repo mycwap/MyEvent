@@ -44,12 +44,11 @@ public class LocationService extends Service implements LocationListener {
             // no network provider is enabled
             //showToastInAsync("No provider");
         } else {
-//            if (isWifiEnable) {
-//                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,MIN_TIME, MIN_DISTANCE, this);
-//                provider = LocationManager.NETWORK_PROVIDER;
-//                Log.d("Network", "Network");
-//            }
-            if (isGPSEnable) {
+            if (isWifiEnable) {
+                lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,MIN_TIME, MIN_DISTANCE, this);
+                provider = LocationManager.NETWORK_PROVIDER;
+                Log.d("Network", "Network");
+            }else if (isGPSEnable) {
                 //if (lm == null) {
                     lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, this);
                     provider = LocationManager.GPS_PROVIDER;

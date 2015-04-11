@@ -24,6 +24,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Camera.Size;
@@ -33,6 +35,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -118,10 +121,21 @@ public class MainActivity extends FragmentActivity {
         transaction.commit();
 
         hasNativeLink = handleNativeLink();
-        setAddress();
+       // setAddress();
+        Intent intent = new Intent(MainActivity.this, OnAlarmReceive.class);
+		startService(intent);
+		AlarmManager alarmMgr = (AlarmManager)getSystemService(ALARM_SERVICE);
+		 
+		 PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,  intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		 alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),20*1000*60, pendingIntent); 
     }
     public void Reget(View v){
     	setAddress();
+    }
+    public void openClock(View v){
+    	Intent openClockIntent = new Intent(AlarmClock.ACTION_SET_ALARM);
+    	openClockIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    	startActivity(openClockIntent);
     }
     public void setAddress(){
     	location=locationService.getLocation();
