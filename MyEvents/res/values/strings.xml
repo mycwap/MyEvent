@@ -3,7 +3,7 @@
 
     <string name="app_name">Event</string>
     <string name="app_id">446761412142468</string>
-    <string name="rock">My</string>
+    <string name="name">My Event</string>
     <string name="paper">Event</string>
     <string name="scissors">Test</string>
     <string name="shoot">Shoot!</string>

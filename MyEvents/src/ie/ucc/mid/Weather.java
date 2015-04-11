@@ -3,7 +3,7 @@ package ie.ucc.mid;
 
 public class Weather {
 	
-	public Location location;
+	public LocationInWeather location;
 	public CurrentCondition currentCondition = new CurrentCondition();
 	public Temperature temperature = new Temperature();
 	public Wind wind = new Wind();

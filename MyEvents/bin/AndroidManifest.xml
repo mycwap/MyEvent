@@ -38,7 +38,11 @@
                     android:scheme="https" />
             </intent-filter>
         </activity>
-
+ 		<service
+            android:name=".LocationService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
         <service
             android:name="ie.ucc.mid.ReminderService"
             android:enabled="true"

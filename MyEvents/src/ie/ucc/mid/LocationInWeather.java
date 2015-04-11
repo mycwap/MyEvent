@@ -3,7 +3,7 @@ package ie.ucc.mid;
 
 import java.io.Serializable;
 
-public class Location implements Serializable {
+public class LocationInWeather implements Serializable {
 
 	private float longitude;
 	private float latitude;

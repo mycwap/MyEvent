@@ -8,10 +8,13 @@
               android:layout_width="match_parent"
               android:background="@drawable/app_background">
 
-    <LinearLayout android:layout_height="wrap_content"
-                  android:layout_width="wrap_content"
-                  android:layout_gravity="center"
-                  android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:orientation="vertical" >
+
         <TextView android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
                   android:id="@+id/text_rock"
@@ -19,27 +22,71 @@
                   android:textSize="@dimen/text_size"
                   android:layout_gravity="left"
                   android:layout_marginTop="20dp"
-                  android:text="@string/rock" />
+                  android:text="@string/name" />
 
-        <TextView android:layout_height="wrap_content"
-                  android:layout_width="wrap_content"
-                  android:id="@+id/text_paper"
-                  android:textColor="@color/text_color"
-                  android:textSize="@dimen/text_size"
-                  android:layout_gravity="left"
-                  android:layout_marginLeft="30dp"
-                  android:text="@string/paper"/>
+        <EditText
+            android:id="@+id/whattext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:hint="What&apos;s up?"
+            android:inputType="textMultiLine">
+              <requestFocus />
+         </EditText>
 
-        <TextView android:layout_height="wrap_content"
-                  android:layout_width="wrap_content"
-                  android:id="@+id/text_scissors"
-                  android:textColor="@color/text_color"
-                  android:textSize="@dimen/text_size"
-                  android:layout_gravity="left"
-                  android:layout_marginLeft="60dp"
-                  android:layout_marginBottom="20dp"
-                  android:text="@string/scissors"/>
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" >
+
+            <EditText
+                android:id="@+id/datetext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:ems="10"
+                android:hint="When is your party?"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/timetext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="time"
+                android:inputType="time" >
+
+                
+            </EditText>
+
+        </TableRow>
+
     </LinearLayout>
+
+    <TableRow
+        android:id="@+id/tableRow2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/addresstext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:ems="10"
+            android:inputType="textPostalAddress" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get"
+            android:onClick="Reget" />
+
+    </TableRow>
  
     <RelativeLayout
             android:layout_width="match_parent"
@@ -75,8 +122,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:text="Button"
-            android:onClick="test" />
+            android:layout_marginTop="15dp"
+            android:onClick="test"
+            android:text="Show Event" />
 
     </RelativeLayout>
 

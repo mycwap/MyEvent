@@ -1,8 +1,10 @@
 package ie.ucc.mid;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,7 +22,6 @@ import com.facebook.*;
 import com.facebook.model.GraphObject;
 import com.facebook.model.OpenGraphAction;
 import com.facebook.model.OpenGraphObject;
-
 import com.facebook.widget.FacebookDialog;
 
 import java.util.Arrays;
@@ -31,8 +32,8 @@ import static ie.ucc.mid.OpenGraphUtils.*;
 
 public class EventFragment extends Fragment {
 
-	private static final String SHARE_GAME_LINK = "http://www.ucc.ie";
-	private static final String SHARE_GAME_NAME = "Let's have a Party";
+	private   String SHARE_MY_LINK = "http://www.ucc.ie";
+	private   String SHARE_EVENT_NAME = "Let's have a Party";
 
 	private static final String PENDING_PUBLISH_KEY = "pending_publish";
 	private static final String IMPLICIT_PUBLISH_KEY = "implicitly_publish";
@@ -48,9 +49,13 @@ public class EventFragment extends Fragment {
 
 
 	public void shareUsingNativeDialog() {
+		SharedPreferences prefs = getActivity().getSharedPreferences("EVENT", Context.MODE_PRIVATE); 
+		String WhenAndWhere="We will have party at"+prefs.getString("WHEN", "today")+" in "+prefs.getString("WHERE", "today");
+		String What=prefs.getString("WHERE", "today");
 		FacebookDialog.ShareDialogBuilder builder = new FacebookDialog.ShareDialogBuilder(
-				getActivity()).setLink(SHARE_GAME_LINK)
-				.setName(SHARE_GAME_NAME)
+				getActivity()).setLink(SHARE_MY_LINK)
+				.setName(SHARE_EVENT_NAME)
+
 				.setFragment(this);
 		//builder.build().present();
 		// share the app
@@ -62,8 +67,8 @@ public class EventFragment extends Fragment {
 
 	public void shareUsingMessengerDialog() {
 		FacebookDialog.MessageDialogBuilder builder = new FacebookDialog.MessageDialogBuilder(
-				getActivity()).setLink(SHARE_GAME_LINK)
-				.setName(SHARE_GAME_NAME).setFragment(this);
+				getActivity()).setLink(SHARE_MY_LINK)
+				.setName(SHARE_EVENT_NAME).setFragment(this);
 		// share the app
 		builder.build().present();
 //		if (builder.canPresent()) {
