@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/game_group"
+              android:orientation="vertical"
+              android:layout_height="match_parent"
+              android:layout_width="match_parent"
+              android:background="@drawable/app_background">
+
+    <LinearLayout android:layout_height="wrap_content"
+                  android:layout_width="wrap_content"
+                  android:layout_gravity="center"
+                  android:orientation="vertical">
+        <TextView android:layout_height="wrap_content"
+                  android:layout_width="wrap_content"
+                  android:id="@+id/text_rock"
+                  android:textColor="@color/text_color"
+                  android:textSize="@dimen/text_size"
+                  android:layout_gravity="left"
+                  android:layout_marginTop="20dp"
+                  android:text="@string/rock" />
+
+        <TextView android:layout_height="wrap_content"
+                  android:layout_width="wrap_content"
+                  android:id="@+id/text_paper"
+                  android:textColor="@color/text_color"
+                  android:textSize="@dimen/text_size"
+                  android:layout_gravity="left"
+                  android:layout_marginLeft="30dp"
+                  android:text="@string/paper"/>
+
+        <TextView android:layout_height="wrap_content"
+                  android:layout_width="wrap_content"
+                  android:id="@+id/text_scissors"
+                  android:textColor="@color/text_color"
+                  android:textSize="@dimen/text_size"
+                  android:layout_gravity="left"
+                  android:layout_marginLeft="60dp"
+                  android:layout_marginBottom="20dp"
+                  android:text="@string/scissors"/>
+    </LinearLayout>
+ 
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_left"
+            android:layout_marginRight="@dimen/margin_right"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+        <TextView android:id="@+id/stats"
+                  android:layout_height="wrap_content"
+                  android:layout_width="wrap_content"
+                  android:layout_gravity="left"
+                  android:textColor="#000"
+                  android:textSize="20sp"
+                  android:visibility="gone"
+                  android:layout_alignParentLeft="true"
+                  android:layout_centerVertical="true" />
+
+        <ImageButton
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/facebook_button"
+                android:background="@drawable/fb_logo" />
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="Button"
+            android:onClick="test" />
+
+    </RelativeLayout>
+
+</LinearLayout>
