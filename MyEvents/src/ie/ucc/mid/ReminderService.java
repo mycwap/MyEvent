@@ -16,6 +16,9 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.json.JSONException;
+
+
 
 
 public class ReminderService extends Service {
@@ -32,13 +35,14 @@ public class ReminderService extends Service {
 
     @Override
     public void onCreate() {
-        showNotification();
+      //  showNotification();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // updateWeather();
-    	 showNotification();
+    	Weather wt=getWeather();
+    	 showNotification(wt);
 //        timer = new Timer();
 //        timer.schedule( new TimerTask()
 //        {
@@ -58,6 +62,23 @@ public class ReminderService extends Service {
     public void onDestroy() {
 
     }
+    
+    public Weather getWeather(){
+    	Weather weather = new Weather();
+		String data = ( (new WeatherHttpClient()).getWeatherData("Cork,IE"));
+
+		try {
+			weather = JSONWeatherParser.getWeather(data);
+			
+			// Let's retrieve the icon
+			weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
+			
+		} catch (JSONException e) {				
+			e.printStackTrace();
+		}
+		return weather;
+    	
+    } 
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -71,12 +92,13 @@ public class ReminderService extends Service {
     /**
      * Show a notification while this service is running.
      */
-    private void showNotification() {
+    private void showNotification(Weather weather) {
+    	
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.mario)
-                        .setContentTitle("service")
-                        .setContentText("Hello service!");
+                        .setContentTitle(weather.currentCondition.getDescr())
+                        .setContentText( Math.round((weather.temperature.getTemp() - 273.15)) + "C");
         // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, MainActivity.class);
 

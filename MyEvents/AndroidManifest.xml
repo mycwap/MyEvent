@@ -45,6 +45,10 @@
             android:exported="true" >
         </service>
 
+        <receiver android:name="ie.ucc.mid.OnAlarmReceive" >
+   
+        </receiver>
+
         <activity
             android:name="ie.ucc.mid.FriendActivity"
             android:label="@string/app_name" />
