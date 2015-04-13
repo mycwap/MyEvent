@@ -58,6 +58,7 @@ import com.facebook.*;
 public class MainActivity extends FragmentActivity {
     static final int RPS = 0;
     static final int SETTINGS = 1;
+    AccessToken accessToken;
 //    static final int CONTENT = 2;
     static final int FRAGMENT_COUNT = 2;
     Location location = null;
@@ -236,7 +237,7 @@ public class MainActivity extends FragmentActivity {
         if (item.equals(settings)) {
             showFragment(SETTINGS, true);
             return true;
-        } else if (item.equals(friends)) {
+        } else if (item.equals(friends)) {                          
             Intent intent = new Intent();
             intent.setClass(this, FriendActivity.class);
             startActivity(intent);
@@ -261,7 +262,7 @@ public class MainActivity extends FragmentActivity {
         // but do not cache the token (we don't want to use the same user identity the next time the
         // app is run).
         if (existingSession == null || !existingSession.isOpened()) {
-            AccessToken accessToken = AccessToken.createFromNativeLinkingIntent(getIntent());
+        	 accessToken = AccessToken.createFromNativeLinkingIntent(getIntent());
             if (accessToken != null) {
                 Session newSession = new Session.Builder(this).setTokenCachingStrategy(new NonCachingTokenCachingStrategy())
                         .build();
